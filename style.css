@@ -1,0 +1,388 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* --- ESTILOS GENERALES --- */
+html {
+    font-family: 'Roboto', 'sans-serif';
+}
+
+.seccion-subtitulo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    font-family: 'Lato', 'sans-serif';
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 2rem;
+}
+
+/* --- NAV --- */
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    justify-content: space-between;
+}
+
+nav * {
+    color: #ff7150;
+}
+
+.nav-pages {
+    display: flex;
+    flex-direction: row;
+    width: 17%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    justify-content: flex-end;
+    width: 83%;
+}
+
+.nav-item {
+    position: relative;
+    width: 7.5rem;
+    height: 2.65rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.nav-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#ff7150, #ff7150);
+    background-size: 100% 0%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-item a:hover {
+    background-size: 100% 100%;
+    font-size: 1rem;
+    color: white;
+}
+
+/* --- HEADER --- */
+header {
+    background-image: url(images/banner1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header .overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    color: #ffffff;
+    user-select: none;
+}
+
+header .overlay>img {
+    width: 30%;
+}
+
+header .overlay .titulo-logo {
+    font-size: 3.9rem;
+    margin-bottom: 1rem;
+}
+
+header .overlay>p {
+    font-size: 2rem;
+    font-family: 'Lato', 'Roboto', 'sans-serif';
+}
+
+/* --- BIENVENIDA --- */
+
+#bienvenida {
+    padding: 2rem 1rem;
+    color: #ff7150;
+}
+
+#bienvenida h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* --- SERVICIOS --- */
+#servicios {
+    padding: 0.5rem;
+}
+
+#servicios p {
+    font-size: 1.2rem;
+    margin: 0.9rem 0;
+}
+
+#servicios p:last-of-type {
+    margin: 0.75rem 0;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+#servicios .mascotas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#servicios .contenedor-mascota {
+    width: 25%;
+}
+
+#servicios .contenedor-mascota>img {
+    width: 90%;
+}
+
+/* --- AGENDAR CITA --- */
+#agendar-cita {
+    background-color: #98ff98;
+    padding: 2rem;
+}
+
+#agendar-cita p {
+    font-size: 1rem;
+    margin: 0.5rem;
+}
+
+#agendar-cita .acciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#agendar-cita .boton {
+    margin: 0.7rem 0;
+    border: 1.2px solid black;
+    width: 9.8rem;
+    height: 2.65rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+#agendar-cita .boton a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #222222;
+    border-radius: 1rem;
+    user-select: none;
+}
+
+#agendar-cita .boton:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#agendar-cita .boton a p {
+    font-weight: 500;
+}
+
+/* --- FOOTER --- */
+footer {
+    color: #ff7150;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* --- MEDIA QUERIES --- */
+
+@media screen and (max-width: 900px) {
+    .nav-pages {
+        width: 28%;
+    }
+
+    .login {
+        width: 72%;
+    }
+
+    header .overlay>p {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    header .overlay>p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav-pages {
+        width: 34%;
+    }
+
+    .login {
+        width: 66%;
+    }
+
+    header .overlay>img {
+        background-position: left;
+        width: 45%;
+    }
+
+    header .overlay .titulo-logo {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #agendar-cita {
+        border-radius: 0.6rem;
+    }
+
+    #agendar-cita .acciones {
+        flex-direction: column;
+    }
+}
