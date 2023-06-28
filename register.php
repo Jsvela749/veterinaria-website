@@ -47,6 +47,15 @@
 
 <?php 
 
+    session_start();
+
+    // Verificar que el usuario no esté logueado
+    if(isset($_SESSION) && is_array($_SESSION) && array_key_exists('user', $_SESSION)){
+        // Si lo está, se le redirige al dashboard
+       header('Location: dashboard');
+       exit();
+    }
+
     require_once 'clases/register.class.php';
 
     $registro = new register();
@@ -65,6 +74,13 @@
             $nombre = $datos['nombre'];
             $apellido = $datos['apellido'];
             $registro->registrarUsuario($nombre, $apellido, $user, $password);
+            $query = "SELECT UserID FROM users WHERE Correo = '$user'";
+            $resultados = $registro->ejecutarQuery($query);
+            $_SESSION['user'] = $resultados['UserID'];
+            $_SESSION['nombreUsuario'] = $nombre;
+            $_SESSION['apellidoUsuario'] = $apellido;
+            header('Location: dashboard');
+            exit();
         }else{
             echo "Ya existe un usuario registrado con el correo ingresado";
         }

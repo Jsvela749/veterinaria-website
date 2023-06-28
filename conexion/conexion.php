@@ -19,8 +19,8 @@ class conexion{
     public function ejecutarQueryMultiple($query){
         $resultados = $this->conexion->query($query);
         $arrayResultados = array();
-        while($resultados = mysqli_fetch_array($resultados, MYSQLI_ASSOC)){
-            $arrayResultados[] = $resultados;
+        while($resultadosQuery = mysqli_fetch_array($resultados, MYSQLI_ASSOC)){
+            $arrayResultados[] = $resultadosQuery;
         }
         return $arrayResultados;
     }
@@ -28,7 +28,11 @@ class conexion{
     public function nonQuery($query){
         $resultados = $this->conexion->query($query);
         //print_r($resultados);
+    }
 
+    public function contarResultadosQuery($query){
+        $numResultados = $this->conexion->query($query);
+        return $numResultados->num_rows;
     }
 
     public function encriptar($password){

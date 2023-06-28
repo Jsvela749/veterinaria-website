@@ -28,12 +28,12 @@
         </div>
     </nav>
     <section id="login">
-        <form action="login.php" method="post">
-            <label for="usuario">Correo:</label>
-            <input type="text" name="usuario" id="usuario">
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password">
-            <input type="submit" value="Ingresar">
+        <form id="form" action="login.php" method="post">
+                <label for="usuario">Correo:</label>
+                <input type="text" name="usuario" id="usuario">
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password">
+                <input type="submit" value="Ingresar">
         </form>
         <p>¿No tiene una cuenta? <a href="register">Regístrese</a> </p>
     </section>
@@ -42,28 +42,44 @@
 </html>
 
 <?php 
-    require_once 'clases/login.class.php';
 
+    session_start();
+
+    // Verificar que el usuario no esté logueado
+    if(isset($_SESSION) && is_array($_SESSION) && array_key_exists('user', $_SESSION)){
+        // Si lo está, se le redirige al dashboard
+       header('Location: dashboard');
+       exit();
+    }
+
+    require_once 'clases/login.class.php';
+    
     $login = new conexion();
 
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // Suponiendo que recibe JSON
-        //$datos = file_get_contents('php://input');
-        //$datos = json_decode($datos, true);
-        $datos = $_POST;
-        if(!isset($datos['usuario']) || !isset($datos['password'])){
-            echo "Datos enviados con formato incorrecto";
-            die();
-        }
-        $user = $datos['usuario'];
-        $password = $datos['password'];
-        $query = "SELECT Password FROM users WHERE Correo = '$user'";
-        $resultados = $login->ejecutarQuery($query);
-        if($resultados == null){
-            echo "El usuario específicado no existe";
-        }else{
-            if($login->encriptar($password) == $resultados['Password']){
+    // Suponiendo que recibe JSON
+    //$datos = file_get_contents('php://input');
+    //$datos = json_decode($datos, true);
+    $datos = $_POST;
+    if(!isset($datos['usuario']) || !isset($datos['password'])){
+        echo "Datos enviados con formato incorrecto";
+        die();
+    }
+    $user = $datos['usuario'];
+    $password = $datos['password'];
+    $query = "SELECT UserID, Nombre, Apellido, Password FROM users WHERE Correo = '$user'";
+    $resultados = $login->ejecutarQuery($query);
+    if($resultados == null){
+        echo "El usuario específicado no existe";
+    }else{
+        if($login->encriptar($password) == $resultados['Password']){
                 echo "Contraseña aceptada. Bienvenido";
+                $_SESSION['user'] = $resultados['UserID'];
+                $_SESSION['nombreUsuario'] = $resultados['Nombre'];
+                $_SESSION['apellidoUsuario'] = $resultados['Apellido'];
+                header('Location: dashboard');
+                exit();
             }else{
                 echo "Contraseña incorrecta";
             }
