@@ -10,15 +10,14 @@
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="dashboard.js"></script>
     <title>VetPet - Servicios Veterinarios</title>
 </head>
 
 <body>
     <nav>
         <div class="nav-pages">
-            <div class="nav-item"><a href="index">Inicio</a>
-            </div>
-
+            <div class="nav-item"><a href="index">Inicio</a></div>
             <div class="nav-item"><a href="galeria">Galeria</a></div>
         </div>
         <!--<div class="nav-item"></div>
@@ -34,14 +33,29 @@
     </section>
     <section class="mascotas">
         <div class="agregarMascota">
-            <form action="dashboard.php" method="post">
+            <form id="formulario">
                 <label for="nombreMascota">Nombre:</label>
                 <input type="text" name="nombreMascota" id="nombreMascota">
-                <input type="submit" value="Registrar mascota">
+                <label for="edadMascota">Edad (En años):</label>
+                <input type="number" name="edadMascota" id="edadMascota" min="0" max="100">
+                <label for="especieMascota">Especie:</label>
+                <select name="especieMascota" id="especieMascota">
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Tortuga">Tortuga</option>
+                    <option value="Iguana">Iguana</option>
+                </select>
             </form>
+            <button onclick="enviarDatos()">Registrar mascota</button>
+        </div>
+        <div id="mascotas-registradas">
         </div>
     </section>
-</body>
+    <!--<button onclick="pedirDatos()">Recibir datos</button>-->
+    
+    <!-- Pide los datos de las mascotas registradas por el usuario apenas ingresar a la página -->
+    <script>pedirDatos();</script>
+    </body>
 </html>
 
 <?php 
@@ -54,29 +68,6 @@
         require_once 'conexion/conexion.php';
         $conexion = new conexion();
         $usuario = $_SESSION['user'];
-        echo "Bienvenido usuario $usuario";
-
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
-            $query = "SELECT * FROM mascotas WHERE DuenoID = $usuario";
-            $_SESSION['numMascotas'] = $conexion->contarResultadosQuery($query);
-            $resultados = $conexion->ejecutarQueryMultiple($query);
-            if($resultados == null){
-                echo "No tienes mascotas :P";
-            }else{
-                // Mostrar las máscotas guardadas
-            }
-        }
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if($_SESSION['numMascotas'] <= 10){
-                // Proceso para agregar una nueva mascota
-                $query = "INSERT INTO mascotas (Nombre, DuenoID) VALUES ('" . $_POST['nombreMascota'] . "', '" . $_SESSION['user'] . "')";
-                $conexion->nonQuery($query);
-                echo print_r($numMascotas);
-            }else{
-                echo "Usted tiene demasiadas máscotas. Por favor, elimine una antes de agregar una nueva";
-            }
-        }
     }
 
 ?>

@@ -28,14 +28,20 @@
         </div>
     </nav>
     <section id="login">
-        <form id="form" action="login.php" method="post">
-                <label for="usuario">Correo:</label>
+        <div class="formulario-login">
+            <form id="form" action="login.php" method="post">
+                <div class="form-item">
+                    <label for="usuario">Correo:</label>
                 <input type="text" name="usuario" id="usuario">
+            </div>
+            <div class="form-item">     
                 <label for="password">Contraseña:</label>
                 <input type="password" name="password" id="password">
+            </div>
                 <input type="submit" value="Ingresar">
-        </form>
-        <p>¿No tiene una cuenta? <a href="register">Regístrese</a> </p>
+            </form>
+            <p>¿No tiene una cuenta? <a href="register">Regístrese</a> </p>
+        </div>
     </section>
     <footer>VetPet&copy; 2023.</footer>
 </body>
